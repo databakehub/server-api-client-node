@@ -57,14 +57,14 @@ export default class HTTPClient {
     if (options?.useAuth) {
       const authHeaders = this.authHeaders;
       for (const key in authHeaders) {
-        console.log({ authHeaders });
         request.set(key, authHeaders[key]);
       }
     }
 
     try {
       if (method === METHODS.GET) {
-        response = await request.get(`${this.host}${endpoint}`);
+        const joined = new URL(endpoint, this.host).toString();
+        response = await request.get(joined);
       } else if (method === METHODS.POST) {
         response = await request
           .post(`${this.host}${endpoint}`)

@@ -1,72 +1,23 @@
-import HTTPClient, { METHODS } from './http-client';
-
-const DEFAULT_HOST = 'https://api.databake.xyz';
-
-const ENDPOINTS = {
-    AUTH_CHECK: '/authcheck/:token',
-    LIST: '/list'
-}
+import AuthApiBuilder from './api/auth';
+import BaseApi from './api/base-api';
+import listApiBuilder from './api/list-api';
+import ModelApiBuilder from './api/model';
+import PredictionsApiBuilder from './api/prediction';
 
 interface BakeServerApiOptions {
     host?: string;
 }
 
-
-export class BakeServerApi {
-    private OAuthToken: string;
-    private client: HTTPClient;
-
+export class BakeServerApi extends BaseApi {
     constructor(OAuthToken: string, options?: BakeServerApiOptions) {
-        this.OAuthToken = OAuthToken;
-
-        this.client = new HTTPClient({
-            host: options?.host ?? DEFAULT_HOST,
-            authHeaders: {
-                Authorization: `${this.OAuthToken}`
-            }
-        });
+        super(OAuthToken, options);
     }
 
-    public checkAuth = async (): Promise<{
-        name: string;
-        email: string;
-        provider: string;
-    }> => {
-        if (this.OAuthToken) {
-            try {
-                const response = await this.client.makeApiCall(
-                    METHODS.GET,
-                    ENDPOINTS.AUTH_CHECK.replace(':token', this.OAuthToken),
-                    {
-                        json: false
-                    }
-                );
+    public list = listApiBuilder(this);
+    
+    public auth = AuthApiBuilder(this);
 
-                return JSON.parse(response);
-            } catch (err) {
-                throw err;
-            }
-        } else {
-            throw new Error('No OAuth token provided');
-        }
-    };
+    public model = ModelApiBuilder(this);
 
-    public listApi = async (): Promise<{
-        [key: string]: {
-            lastUpdate: string;
-        }
-    }> => {
-        if (!this.OAuthToken) {
-            return {};
-        }
-        const response = await this.client.makeApiCall(
-            METHODS.GET,
-            ENDPOINTS.LIST,
-            {
-                useAuth: true,
-                json: false
-            }
-        );
-        return JSON.parse(response);
-    };
+    public prediction = PredictionsApiBuilder(this);
 }

@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "init2": "tsc --init",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -21,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/databakehub/server-api-client-node/issues"
   },
-  "homepage": "https://github.com/databakehub/server-api-client-node#readme"
+  "homepage": "https://github.com/databakehub/server-api-client-node#readme",
+  "dependencies": {
+    "typescript": "^4.7.4"
+  }
 }

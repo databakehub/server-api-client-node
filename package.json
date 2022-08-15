@@ -1,5 +1,5 @@
 {
-  "name": "@databake/server-api-client-node",
+  "name": "@databake/server-api-client",
   "version": "0.0.0",
   "description": "",
   "main": "dist/index.js",

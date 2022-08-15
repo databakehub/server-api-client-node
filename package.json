@@ -24,6 +24,10 @@
   },
   "homepage": "https://github.com/databakehub/server-api-client-node#readme",
   "dependencies": {
+    "superagent": "^8.0.0",
     "typescript": "^4.7.4"
+  },
+  "devDependencies": {
+    "@types/superagent": "^4.1.15"
   }
 }

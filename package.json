@@ -1,0 +1,25 @@
+{
+  "name": "server-api-client-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/databakehub/server-api-client-node.git"
+  },
+  "keywords": [
+    "api",
+    "client",
+    "server",
+    "databake"
+  ],
+  "author": "Sidhant Panda",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/databakehub/server-api-client-node/issues"
+  },
+  "homepage": "https://github.com/databakehub/server-api-client-node#readme"
+}

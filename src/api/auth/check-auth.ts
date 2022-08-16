@@ -3,14 +3,10 @@ import BaseApi from '../base-api';
 
 const ENDPOINT = '/authcheck/:token';
 
-const checkAuthApiBuilder = (baseApi: BaseApi) => async (token: string) => {
-    if (!baseApi.OAuthToken) {
-        return {};
-    }
-
+const checkAuthApiBuilder = (baseApi: BaseApi) => async () => {
     const response = await baseApi.client.makeApiCall(
         METHODS.GET,
-        ENDPOINT.replace(':token', token),
+        ENDPOINT.replace(':token', baseApi.OAuthToken),
         {
             json: false
         }

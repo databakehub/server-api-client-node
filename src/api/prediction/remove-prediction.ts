@@ -4,10 +4,6 @@ import BaseApi from '../base-api';
 const ENDPOINT = '/predictions/remove/:metric';
 
 const removePredictionApiBuilder = (baseApi: BaseApi) => async (metric: string) => {
-    if (!baseApi.OAuthToken) {
-        return {};
-    }
-
     const response = await baseApi.client.makeApiCall(
         METHODS.GET,
         ENDPOINT.replace(':metric', metric),

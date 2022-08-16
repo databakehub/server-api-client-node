@@ -4,10 +4,6 @@ import BaseApi from '../base-api';
 const ENDPOINT = '/predictions';
 
 const getPredictionApiBuilder = (baseApi: BaseApi) => async () => {
-    if (!baseApi.OAuthToken) {
-        return {};
-    }
-
     const response = await baseApi.client.makeApiCall(
         METHODS.GET,
         ENDPOINT,

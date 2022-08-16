@@ -4,9 +4,6 @@ import BaseApi from '../../base-api';
 const ENDPOINT = '/model/config/:metric';
 
 const getModelConfigApiBuilder = (baseApi: BaseApi) => async (metric: string) => {
-    if (!baseApi.OAuthToken) {
-        return {};
-    }
     const response = await baseApi.client.makeApiCall(
         METHODS.GET,
         ENDPOINT.replace(':metric', metric),
